@@ -1,0 +1,106 @@
+{
+  "projectType": "sdk-library",
+  "projectName": "greatstorage",
+  "projectDescription": "A supercharged localStorage wrapper that handles rich type serialization, key expiration with TTL, namespace isolation, and Standard Schema validation.",
+  "theme": "mint",
+  "primaryColor": "#848486",
+  "lightColor": "#15151d",
+  "darkColor": "#bcbbbc",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": ["introduction", "installation", "quickstart"]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/serialization",
+              "concepts/expiration",
+              "concepts/namespacing",
+              "concepts/schema-validation"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/custom-serializer",
+              "guides/storage-backends",
+              "guides/migrating-from-localstorage",
+              "guides/caveats"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Functions",
+            "pages": [
+              "api/create-storage",
+              "api/create-memory-storage"
+            ]
+          },
+          {
+            "group": "Instance Methods",
+            "pages": [
+              "api/get-item",
+              "api/set-item",
+              "api/get-or-init",
+              "api/update-item",
+              "api/remove-item",
+              "api/has",
+              "api/clear",
+              "api/clear-expired",
+              "api/key",
+              "api/length"
+            ]
+          },
+          {
+            "group": "Types",
+            "pages": [
+              "api/types"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Store any JavaScript type including Set, Map, Date, RegExp, BigInt, and circular references via devalue",
+    "TTL and absolute expiration timestamps with lazy cleanup on read",
+    "Namespace isolation via configurable prefix and separator",
+    "Standard Schema validation (Zod, Valibot, ArkType) on read",
+    "Works with localStorage, sessionStorage, or any Storage-compatible backend",
+    "In-memory storage implementation for tests and SSR",
+    "Pluggable serializer — swap devalue for superjson or plain JSON",
+    "Core entry point (greatstorage/core) for tree-shaking devalue out of bundles",
+    "ESM and CJS dual builds with full TypeScript types",
+    "Scoped clear() — only removes greatstorage entries in the current namespace"
+  ],
+  "publicApiSurface": [
+    "createStorage(options?: CreateStorageOptions): GreatStorage",
+    "createStorage(options: CoreStorageOptions): GreatStorage  [from greatstorage/core]",
+    "createMemoryStorage(): Storage",
+    "GreatStorage.getItem<T>(key: string): T | null",
+    "GreatStorage.getItem<T>(key: string, options: GetOptions<T>): T | null",
+    "GreatStorage.setItem<T>(key: string, value: T, options?: StorageOptions): void",
+    "GreatStorage.getOrInit<T>(key: string, factory: () => T, options?: StorageOptions): T",
+    "GreatStorage.updateItem<T>(key: string, updater: (value: T | null) => T, options?: StorageOptions): T",
+    "GreatStorage.removeItem(key: string): void",
+    "GreatStorage.has(key: string): boolean",
+    "GreatStorage.key(index: number): string | null",
+    "GreatStorage.clear(): void",
+    "GreatStorage.clearExpired(): void",
+    "GreatStorage.length: number",
+    "CreateStorageOptions: { prefix?, separator?, storage?, serializer? }",
+    "CoreStorageOptions: { prefix?, separator?, storage?, serializer (required) }",
+    "StorageOptions: { ttl?, expiresAt? }",
+    "GetOptions<T>: { schema: StandardSchemaV1 }",
+    "Serializer: { stringify, parse }"
+  ]
+}
